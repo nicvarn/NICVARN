@@ -5,48 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicvarn Mørkset | Official Website</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Menghubungkan library ikon gratis untuk logo streaming -->
+    <!-- Library ikon untuk streaming platform -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- MENU GARIS 3 (POJOK KANAN ATAS) -->
+    <!-- TOMBOL GARIS 3 (POJOK KANAN ATAS) -->
     <nav class="navbar">
-        <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#bio">Biography</a></li>
-            <li><a href="#discography">Discography</a></li>
-            <li><a href="#store">Store / PO Merch</a></li>
-        </ul>
     </nav>
 
-    <!-- LOGO BAND DI TENGAH LAYAR -->
-    <div class="hero-container">
-        <!-- Pastikan nanti kamu punya file bernama logo.png di folder yang sama -->
+    <!-- HALAMAN LAYAR MENU UTAMA (OVERLAY FULLSCREEN) -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="overlay-content">
+            <ul class="nav-links">
+                <li><a href="#bio" onclick="toggleMenu()">BIOGRAPHY</a></li>
+                <li><a href="#discography" onclick="toggleMenu()">DISCOGRAPHY</a></li>
+                <li><a href="#store" onclick="toggleMenu()">SHOP</a></li>
+            </ul>
+            <!-- LOGO KHUSUS DI BAWAH MENU -->
+            <div class="menu-sub-logo">
+                <img src="logo-menu.png" alt="Nicvarn Mørkset Mini Logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGO UTAMA BAND DI HALAMAN DEPAN -->
+    <div class="hero-container" id="heroContainer">
         <img src="logo.png" alt="Nicvarn Mørkset Logo" class="band-logo">
     </div>
 
-    <!-- LINK STREAMING DI BAWAH (MURNI IKON) -->
-    <footer class="streaming-footer">
+    <!-- LINK STREAMING RESMI DI BAWAH SCREEN -->
+    <footer class="streaming-footer" id="streamingFooter">
         <div class="icon-links">
-            <!-- Ganti tanda # dengan link profil streaming-mu nanti -->
-            <a href="#" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="#" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-            <a href="#" target="_blank" title="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-            <a href="#" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="#" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+            <a href="https://open.spotify.com/artist/38j0xCdsSETXXoxOqPWfWD?si=5XlD0usXSCqVE5e5Q4esGw" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://music.apple.com/id/artist/nicvarn-m%C3%B8rkset/1883083358?l=id" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
+            <a href="https://nicvarn.bandcamp.com" target="_blank" title="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+            <a href="https://youtube.com/@nicvarnmorkset?si=Sgz1TJO2EE6H389S" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://music.amazon.com/artists/B0GRH96P7F/nicvarn-m%25C3%25B8rkset?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_E4VnadScDmiHQV96ag5UbQEur" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
         </div>
     </footer>
 
-    <!-- FUNGSI KLIK MENU GARIS 3 -->
+    <!-- SKRIP UNTUK TOMBOL BUKA/TUTUP MENU -->
     <script>
         function toggleMenu() {
-            var navLinks = document.getElementById("navLinks");
-            navLinks.classList.toggle("active");
+            var overlay = document.getElementById("navOverlay");
+            var toggle = document.getElementById("menuToggle");
+            var hero = document.getElementById("heroContainer");
+            var footer = document.getElementById("streamingFooter");
+
+            overlay.classList.toggle("active");
+            toggle.classList.toggle("active");
+            
+            if(overlay.classList.contains("active")) {
+                hero.style.opacity = "0";
+                footer.style.opacity = "0";
+            } else {
+                hero.style.opacity = "1";
+                footer.style.opacity = "1";
+            }
         }
     </script>
 
