@@ -12,7 +12,7 @@ body, html {
     background-color: #050505;
 }
 
-/* BACKGROUND UTAMA DENGAN OVERLAY GELAP */
+/* BACKGROUND UTAMA */
 body {
     background-image: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.9)), url('background.jpg');
     background-size: cover;
@@ -47,11 +47,10 @@ body {
     display: block;
     height: 2px;
     width: 100%;
-    background-color: #BEBEBE; /* Palet warna abu-abu terang */
+    background-color: #BEBEBE;
     transition: all 0.3s ease;
 }
 
-/* ANIMASI GARIS TIGA BERUBAH MENJADI X SAAT AKTIF */
 .menu-toggle.active span:nth-child(1) {
     transform: translateY(9px) rotate(45deg);
 }
@@ -62,7 +61,7 @@ body {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* HALAMAN MENU FULLSCREEN (OVERLAY KANVAS) */
+/* HALAMAN MENU FULLSCREEN */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -84,7 +83,6 @@ body {
     pointer-events: auto;
 }
 
-/* SUSUNAN ISI MENU DAN LOGO BAWAH */
 .overlay-content {
     display: flex;
     flex-direction: column;
@@ -96,7 +94,7 @@ body {
 
 .nav-links {
     list-style: none;
-    margin-bottom: 40px; /* Jarak antara teks menu dengan logo bawah */
+    margin-bottom: 40px;
 }
 
 .nav-links li {
@@ -113,12 +111,11 @@ body {
 }
 
 .nav-links a:hover {
-    color: #4a0d0d; /* Efek merah darah saat disentuh/hover */
+    color: #4a0d0d;
 }
 
-/* LOGO KHUSUS DI BAWAH TEKS MENU */
 .menu-sub-logo img {
-    max-width: 90px; /* Proporsi ukuran kecil di bagian bawah menu */
+    max-width: 90px;
     height: auto;
     opacity: 0.8;
     filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.1));
@@ -142,7 +139,7 @@ body {
     filter: drop-shadow(0px 0px 15px rgba(0, 0, 0, 0.9));
 }
 
-/* LINK STREAMING DI BAWAH */
+/* LINK STREAMING DENGAN WARNA BRAND */
 .streaming-footer {
     width: 100%;
     padding-bottom: 40px;
@@ -157,25 +154,24 @@ body {
 }
 
 .icon-links a {
-    color: #BEBEBE; /* Palet warna abu-abu terang */
+    color: #BEBEBE;
     font-size: 1.6rem;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
 }
 
 .icon-links a:hover {
-    color: #4a0d0d;
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
-/* ADAPTASI RESPONSIF UNTUK TAMPILAN LAPTOP/DESKTOP */
+.icon-links a[title="Spotify"]:hover { color: #1DB954; }
+.icon-links a[title="Apple Music"]:hover { color: #FA243C; }
+.icon-links a[title="Bandcamp"]:hover { color: #1DA1F2; }
+.icon-links a[title="YouTube"]:hover { color: #FF0000; }
+.icon-links a[title="Amazon Music"]:hover { color: #00A8E1; }
+
+/* RESPONSIVE */
 @media (min-width: 768px) {
-    .band-logo {
-        max-width: 450px;
-    }
-    .nav-links a {
-        font-size: 2.5rem;
-    }
-    .menu-sub-logo img {
-        max-width: 130px;
-    }
+    .band-logo { max-width: 450px; }
+    .nav-links a { font-size: 2.5rem; }
+    .menu-sub-logo img { max-width: 130px; }
 }
