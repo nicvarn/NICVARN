@@ -160,24 +160,11 @@ body {
     transition: color 0.2s ease;
 }
 
-.icon-links a[title="Spotify"]:hover { color: #1DB954; }
-
-/* APPLE MUSIC - SAAT DI-HOVER DI PC */
-.icon-links a[title="Apple Music"]:hover { 
-    color: #FA243C; 
-}
-
-/* APPLE MUSIC - PAS DIKLIK / DITEKAN JARI DI HP (EFEK GRADASI NYALA) */
-.icon-links a[title="Apple Music"]:active {
-    background: linear-gradient(135deg, #FF4E6B 0%, #FF0436 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
-}
-
-.icon-links a[title="Bandcamp"]:hover { color: #1DA1F2; }
-.icon-links a[title="YouTube"]:hover { color: #FF0000; }
-.icon-links a[title="Amazon Music"]:hover { color: #00A8E1; }
+.icon-links a[title="Spotify"]:hover { color: #1ED760; }
+.icon-links a[title="Apple Music"]:hover { color: #FE2B54; }
+.icon-links a[title="Bandcamp"]:hover { color: #17A1C4; }
+.icon-links a[title="YouTube"]:hover { color: #FE0000; }
+.icon-links a[title="Amazon Music"]:hover { color: #25D3DA; }
 
 /* RESPONSIVE */
 @media (min-width: 768px) {
