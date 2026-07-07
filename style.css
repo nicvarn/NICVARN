@@ -6,9 +6,8 @@
 }
 
 body, html {
-    min-height: 100%;
+    height: 100%;
     font-family: 'Courier New', Courier, monospace;
-    /* Diubah agar halaman bisa digeser ke bawah saat biografi memanjang */
     overflow-x: hidden;
     overflow-y: auto;
     background-color: #050505;
@@ -32,7 +31,9 @@ body {
     padding: 20px;
     display: flex;
     justify-content: flex-end;
-    position: relative;
+    position: fixed; /* Diubah ke fixed agar tombol menu tetap ada saat di-scroll */
+    top: 0;
+    left: 0;
     z-index: 100;
 }
 
@@ -63,14 +64,13 @@ body {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* HALAMAN MENU (DIUBAH MENJADI SEMI-TRANSPARAN AGAR BACKGROUND TETAP TERLIHAT) */
+/* HALAMAN MENU OVERLAY */
 .nav-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Menggunakan rgba dengan opacity 0.30 agar background hutan tetap mengintip di belakang teks menu */
     background-color: rgba(5, 5, 5, 0.30); 
     z-index: 90;
     opacity: 0;
@@ -132,6 +132,7 @@ body {
     align-items: center;
     width: 100%;
     padding: 20px;
+    margin-top: 60px;
     transition: opacity 0.15s linear;
 }
 
@@ -163,8 +164,6 @@ body {
 }
 
 .icon-links a[title="Spotify"]:hover { color: #1ED760; }
-
-/* APPLE MUSIC - PAS DIKLIK / DITEKAN JARI DI HP (EFEK GRADASI NYALA) */
 .icon-links a[title="Apple Music"]:hover { color: #FE2B54; }
 .icon-links a[title="Apple Music"]:active {
     background: linear-gradient(135deg, #FF4E6B 0%, #FF0436 100%);
@@ -172,7 +171,6 @@ body {
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
-
 .icon-links a[title="Bandcamp"]:hover { color: #17A1C4; }
 .icon-links a[title="YouTube"]:hover { color: #FE0000; }
 .icon-links a[title="Amazon Music"]:hover { color: #25D3DA; }
@@ -183,28 +181,26 @@ body {
 /* ========================================== */
 .bio-page-container {
     width: 100%;
-    padding: 60px 20px;
+    min-height: 100vh;
+    padding: 100px 20px 60px 20px; /* Ditambah padding top agar tidak tertutup tombol menu fixed */
     display: flex;
     justify-content: center;
-    /* Menggunakan background yang sama dengan overlay menu (opacity 0.30) */
-    background-image: linear-gradient(rgba(5, 5, 5, 0.30), rgba(5, 5, 5, 0.30)), url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    transition: opacity 0.2s ease;
+    opacity: 0;
 }
 
 .bio-content-wrapper {
     width: 100%;
-    max-width: 500px; /* Menjaga ukuran tetap pas seperti di layar HP */
+    max-width: 500px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Meratakan konten ke kiri sesuai layout sketsa */
+    align-items: flex-start;
 }
 
 /* KOTAK FOTO ATAS */
 .bio-photo-box {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Membuat rasio foto kotak sempurna */
+    aspect-ratio: 1 / 1;
     background-color: #ffffff;
     margin-bottom: 25px;
     display: flex;
@@ -239,10 +235,10 @@ body {
 }
 
 .bio-narrative p {
-    margin-bottom: 15px; /* Memberi jarak antar paragraf */
+    margin-bottom: 15px;
 }
 
-/* RUANG LINK INSTAGRAM */
+/* LINK INSTAGRAM */
 .bio-instagram-links {
     width: 100%;
     display: flex;
@@ -259,15 +255,14 @@ body {
 }
 
 .insta-link:hover {
-    color: #262626; /* Efek gelap estetik saat diarahkan kursor */
+    color: #262626;
 }
-
 
 /* RESPONSIVE */
 @media (min-width: 768px) {
     .band-logo { max-width: 450px; }
     .nav-links a { font-size: 2.5rem; }
     .menu-sub-logo img { max-width: 130px; }
-    .bio-content-wrapper { max-width: 600px; } /* Sedikit melebar di layar PC */
+    .bio-content-wrapper { max-width: 600px; }
     .bio-artist-name { font-size: 2.5rem; }
 }
