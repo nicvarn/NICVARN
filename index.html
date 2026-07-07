@@ -23,7 +23,8 @@
     <div class="nav-overlay" id="navOverlay">
         <div class="overlay-content">
             <ul class="nav-links">
-                <li><a href="#biography" onclick="toggleMenu()">BIOGRAPHY</a></li>
+                <!-- Ketika diklik, memanggil fungsi khusus showBiography() -->
+                <li><a href="#" onclick="showBiography()">BIOGRAPHY</a></li>
                 <li><a href="#discography" onclick="toggleMenu()">ARCHIVE</a></li>
                 <li><a href="#store" onclick="toggleMenu()">SHOP</a></li>
             </ul>
@@ -34,29 +35,32 @@
         </div>
     </div>
 
-    <!-- LOGO UTAMA BAND DI HALAMAN DEPAN -->
-    <div class="hero-container" id="heroContainer">
-        <img src="logo.png" alt="Nicvarn Mørkset Logo" class="band-logo">
+    <!-- MAIN HOME WRAPPER (Membungkus halaman depan agar bisa disembunyikan) -->
+    <div id="mainHomeWrapper" style="display: flex; flex-direction: column; justify-content: space-between; height: 100%; width: 100%; align-items: center;">
+        <!-- LOGO UTAMA BAND DI HALAMAN DEPAN -->
+        <div class="hero-container" id="heroContainer">
+            <img src="logo.png" alt="Nicvarn Mørkset Logo" class="band-logo">
+        </div>
+
+        <!-- LINK STREAMING RESMI DI BAWAH SCREEN -->
+        <footer class="streaming-footer" id="streamingFooter">
+            <div class="icon-links">
+                <a href="https://open.spotify.com/artist/38j0xCdsSETXXoxOqPWfWD?si=5XlD0usXSCqVE5e5Q4esGw" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://music.apple.com/id/artist/nicvarn-m%C3%B8rkset/1883083358?l=id" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
+                <a href="https://nicvarn.bandcamp.com" target="_blank" title="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
+                <a href="https://youtube.com/@nicvarnmorkset?si=Sgz1TJO2EE6H389S" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://music.amazon.com/artists/B0GRH96P7F/nicvarn-m%25C3%25B8rkset?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_E4VnadScDmiHQV96ag5UbQEur" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
+            </div>
+        </footer>
     </div>
 
-    <!-- LINK STREAMING RESMI DI BAWAH SCREEN -->
-    <footer class="streaming-footer" id="streamingFooter">
-        <div class="icon-links">
-            <a href="https://open.spotify.com/artist/38j0xCdsSETXXoxOqPWfWD?si=5XlD0usXSCqVE5e5Q4esGw" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/id/artist/nicvarn-m%C3%B8rkset/1883083358?l=id" target="_blank" title="Apple Music"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://nicvarn.bandcamp.com" target="_blank" title="Bandcamp"><i class="fa-brands fa-bandcamp"></i></a>
-            <a href="https://youtube.com/@nicvarnmorkset?si=Sgz1TJO2EE6H389S" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://music.amazon.com/artists/B0GRH96P7F/nicvarn-m%25C3%25B8rkset?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_E4VnadScDmiHQV96ag5UbQEur" target="_blank" title="Amazon Music"><i class="fa-brands fa-amazon"></i></a>
-        </div>
-    </footer>
-
     <!-- ========================================== -->
-    <!-- HALAMAN BIOGRAFI / CATHARSIS SECTION       -->
+    <!-- HALAMAN BIOGRAFI SECTION (Awalnya Tersembunyi) -->
     <!-- ========================================== -->
-    <section id="biography" class="bio-page-container">
+    <section id="biography" class="bio-page-container" style="display: none;">
         <div class="bio-content-wrapper">
             
-            <!-- BAGIAN FOTO ATAS (Ganti nama file gambar profilmu disini) -->
+            <!-- BAGIAN FOTO ATAS (Ganti foto-profil.jpg dengan nama file fotomu di github jika berbeda) -->
             <div class="bio-photo-box">
                 <img src="foto-profil.jpg" alt="Nicvarn Mørkset" class="bio-profile-img">
             </div>
@@ -73,33 +77,59 @@
                 <p>Perjalanan ini ditandai dengan perilisan single pertama pada 6 Februari 2026, berjudul Soothing Incision. Eksplorasi kegelapan ini kemudian terus berlanjut dan bergerak lebih dalam melalui perilisan karya terbaru mereka yang berjudul Dose in a Quiet Room (Flawed Serenity). Jejak keputusasaan ini pun semakin dipertegas dengan peluncuran sebuah album penuh bertajuk "(nanti ku tambah sendiri judulnya)" dengan 5 track lagu di dalamnya.</p>
             </div>
 
-            <!-- SPACE UNTUK 2 LINK INSTAGRAM (SUDAH TERTEMPEL) -->
+            <!-- SPACE UNTUK 2 LINK INSTAGRAM -->
             <div class="bio-instagram-links">
-                <a href="https://www.instagram.com/nicvarn" target="_blank" class="insta-link">instagram</a>
-                <a href="https://www.instagram.com/zackhell_trve" target="_blank" class="insta-link">instagram</a>
+                <a href="https://www.instagram.com/nicvarn.morkset/" target="_blank" class="insta-link">instagram</a>
+                <a href="https://www.instagram.com/zackhell_/" target="_blank" class="insta-link">instagram</a>
             </div>
 
         </div>
     </section>
 
-    <!-- SKRIP UNTUK TOMBOL BUKA/TUTUP MENU -->
+    <!-- SKRIP LOGIKA NAVIGASI BUKA/TUTUP/PINDAH HALAMAN -->
     <script>
         function toggleMenu() {
             var overlay = document.getElementById("navOverlay");
             var toggle = document.getElementById("menuToggle");
-            var hero = document.getElementById("heroContainer");
-            var footer = document.getElementById("streamingFooter");
+            var homeWrapper = document.getElementById("mainHomeWrapper");
+            var bioSection = document.getElementById("biography");
 
             overlay.classList.toggle("active");
             toggle.classList.toggle("active");
             
+            // Jika menu dibuka
             if(overlay.classList.contains("active")) {
-                hero.style.opacity = "0";
-                footer.style.opacity = "0";
+                homeWrapper.style.opacity = "0";
+                bioSection.style.opacity = "0";
             } else {
-                hero.style.opacity = "1";
-                footer.style.opacity = "1";
+                // Jika menu ditutup, kembalikan opacity halaman yang sedang aktif
+                if (bioSection.style.display === "flex") {
+                    bioSection.style.opacity = "1";
+                } else {
+                    homeWrapper.style.opacity = "1";
+                }
             }
+        }
+
+        function showBiography() {
+            var overlay = document.getElementById("navOverlay");
+            var toggle = document.getElementById("menuToggle");
+            var homeWrapper = document.getElementById("mainHomeWrapper");
+            var bioSection = document.getElementById("biography");
+
+            // Sembunyikan Halaman Depan secara total
+            homeWrapper.style.display = "none";
+            homeWrapper.style.opacity = "0";
+
+            // Munculkan Halaman Biografi
+            bioSection.style.display = "flex";
+            setTimeout(function() {
+                bioSection.style.opacity = "1";
+            }, 50);
+
+            // Tutup overlay menunya
+            overlay.classList.remove("active");
+            toggle.classList.remove("active");
         }
     </script>
 
