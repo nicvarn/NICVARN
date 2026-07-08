@@ -5,35 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicvarn Mørkset | Official Website</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Library ikon untuk streaming platform -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <nav class="navbar" id="mainNavbar">
-        <div class="menu-toggle" id="menuToggle" onclick="handleMenuClick()">
+    <!-- TOMBOL GARIS 3 (POJOK KANAN ATAS) -->
+    <nav class="navbar">
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </nav>
 
+    <!-- HALAMAN LAYAR MENU UTAMA (OVERLAY FULLSCREEN) -->
     <div class="nav-overlay" id="navOverlay">
         <div class="overlay-content">
             <ul class="nav-links">
-                <li><a href="#" onclick="openBiography(event)">BIOGRAPHY</a></li>
-                <li><a href="#discography" onclick="handleMenuClick()">ARCHIVE</a></li>
-                <li><a href="#store" onclick="handleMenuClick()">SHOP</a></li>
+                <li><a href="#bio" onclick="toggleMenu()">BIOGRAPHY</a></li>
+                <li><a href="#discography" onclick="toggleMenu()">ARCHIVE</a></li>
+                <li><a href="#store" onclick="toggleMenu()">SHOP</a></li>
             </ul>
+            <!-- LOGO KHUSUS DI BAWAH MENU -->
             <div class="menu-sub-logo">
                 <img src="logo-menu.png" alt="Nicvarn Mørkset Mini Logo">
             </div>
         </div>
     </div>
 
+    <!-- LOGO UTAMA BAND DI HALAMAN DEPAN -->
     <div class="hero-container" id="heroContainer">
         <img src="logo.png" alt="Nicvarn Mørkset Logo" class="band-logo">
     </div>
 
+    <!-- LINK STREAMING RESMI DI BAWAH SCREEN -->
     <footer class="streaming-footer" id="streamingFooter">
         <div class="icon-links">
             <a href="https://open.spotify.com/artist/38j0xCdsSETXXoxOqPWfWD?si=5XlD0usXSCqVE5e5Q4esGw" target="_blank" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
@@ -44,54 +50,14 @@
         </div>
     </footer>
 
-    <section id="biographySection" class="bio-page-container">
-        <div class="bio-content-wrapper">
-            
-            <div class="bio-photo-box">
-                <img src="foto-profil.jpg" alt="Nicvarn Mørkset" class="bio-profile-img">
-            </div>
-
-            <h1 class="bio-artist-name">NICVARN MØRKSET</h1>
-
-            <div class="bio-narrative">
-                </div>
-
-            <div class="bio-instagram-links">
-                <a href="https://www.instagram.com/nicvarn.morkset/" target="_blank" class="insta-btn-item">
-                    <i class="fa-brands fa-instagram"></i>
-                    <span>NICVARN</span>
-                </a>
-                <a href="https://www.instagram.com/zackhell_/" target="_blank" class="insta-btn-item">
-                    <i class="fa-brands fa-instagram"></i>
-                    <span>ZACKHELL</span>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
+    <!-- SKRIP UNTUK TOMBOL BUKA/TUTUP MENU -->
     <script>
-        var currentScreen = "home"; 
-
-        function handleMenuClick() {
+        function toggleMenu() {
             var overlay = document.getElementById("navOverlay");
             var toggle = document.getElementById("menuToggle");
             var hero = document.getElementById("heroContainer");
             var footer = document.getElementById("streamingFooter");
-            var bioSection = document.getElementById("biographySection");
 
-            // JIKA USER DI HALAMAN BIO: klik tombol X akan mengembalikan murni ke halaman menu overlay
-            if (currentScreen === "biography") {
-                bioSection.classList.remove("active");
-                
-                overlay.classList.add("active");
-                toggle.classList.add("active");
-                
-                currentScreen = "home"; 
-                return;
-            }
-
-            // JIKA USER DI HALAMAN UTAMA (Fungsi asli bawaanmu tanpa modifikasi display)
             overlay.classList.toggle("active");
             toggle.classList.toggle("active");
             
@@ -103,28 +69,7 @@
                 footer.style.opacity = "1";
             }
         }
-
-        function openBiography(e) {
-            e.preventDefault();
-            var overlay = document.getElementById("navOverlay");
-            var toggle = document.getElementById("menuToggle");
-            var hero = document.getElementById("heroContainer");
-            var footer = document.getElementById("streamingFooter");
-            var bioSection = document.getElementById("biographySection");
-
-            // Tutup menu overlay, sembunyikan home lewat opacity bawaan, tombol tetap X silang
-            overlay.classList.remove("active");
-            hero.style.opacity = "0";
-            footer.style.opacity = "0";
-            toggle.classList.add("active");
-
-            // Tampilkan halaman bio
-            bioSection.classList.add("active");
-            window.scrollTo(0, 0);
-
-            currentScreen = "biography";
-        }
     </script>
 
 </body>
-</html>
+    </html>
