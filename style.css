@@ -180,7 +180,7 @@ body {
     background-color: rgba(5, 5, 5, 0.30);
     z-index: 95;
     overflow-x: hidden;
-    overflow-y: auto; /* Memungkinkan gulir halus ke bawah jika teks panjang */
+    overflow-y: auto; /* Memungkinkan gulir halus ke bawah jika kelak teks panjang */
     padding: 80px 24px 60px 24px;
     justify-content: center;
 }
@@ -259,19 +259,12 @@ body {
     color: #262626; /* Efek hover gelap khas menu utamamu */
 }
 
-.bio-close-btn {
+/* Mengunci tombol navbar bawaanmu agar menjadi tombol penutup fixed di halaman bio */
+.bio-page-container.active ~ .navbar {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 1.8rem;
-    color: #BEBEBE;
-    cursor: pointer;
-    z-index: 110;
-    transition: color 0.2s ease;
-}
-
-.bio-close-btn:hover {
-    color: #262626;
+    top: 0;
+    left: 0;
+    z-index: 100;
 }
 
 /* RESPONSIVE ATURAN DESIGN */
@@ -279,8 +272,6 @@ body {
     .band-logo { max-width: 450px; }
     .nav-links a { font-size: 2.5rem; }
     .menu-sub-logo img { max-width: 130px; }
-    
-    /* Penyesuaian skala konten bio di desktop */
     .bio-content-wrapper { max-width: 550px; }
     .bio-artist-name { font-size: 2.5rem; }
 }
