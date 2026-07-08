@@ -10,7 +10,7 @@
 <body>
 
     <nav class="navbar" id="mainNavbar">
-        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+        <div class="menu-toggle" id="menuToggle" onclick="handleMenuClick()">
             <span></span>
             <span></span>
             <span></span>
@@ -21,8 +21,8 @@
         <div class="overlay-content">
             <ul class="nav-links">
                 <li><a href="#" onclick="openBiography(event)">BIOGRAPHY</a></li>
-                <li><a href="#discography" onclick="toggleMenu()">ARCHIVE</a></li>
-                <li><a href="#store" onclick="toggleMenu()">SHOP</a></li>
+                <li><a href="#discography" onclick="handleMenuClick()">ARCHIVE</a></li>
+                <li><a href="#store" onclick="handleMenuClick()">SHOP</a></li>
             </ul>
             <div class="menu-sub-logo">
                 <img src="logo-menu.png" alt="Nicvarn Mørkset Mini Logo">
@@ -45,11 +45,8 @@
     </footer>
 
     <section id="biographySection" class="bio-page-container">
-        <div class="bio-close-btn" onclick="closeBiography()">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
-
         <div class="bio-content-wrapper">
+            
             <div class="bio-photo-box">
                 <img src="foto-profil.jpg" alt="Nicvarn Mørkset" class="bio-profile-img">
             </div>
@@ -69,16 +66,36 @@
                     <span>ZACKHELL</span>
                 </a>
             </div>
+
         </div>
     </section>
 
     <script>
-        function toggleMenu() {
+        // Variabel penanda status posisi layar aktif
+        var currentScreen = "home"; 
+
+        function handleMenuClick() {
             var overlay = document.getElementById("navOverlay");
             var toggle = document.getElementById("menuToggle");
             var hero = document.getElementById("heroContainer");
             var footer = document.getElementById("streamingFooter");
+            var bioSection = document.getElementById("biographySection");
 
+            // JIKA USER SEDANG DI HALAMAN BIOGRAPHY
+            if (currentScreen === "biography") {
+                // Tutup seksi bio-nya
+                bioSection.classList.remove("active");
+                
+                // Murni kembali tampilkan halaman menu overlay saja (Halaman depan wajib mati total)
+                overlay.classList.add("active");
+                toggle.classList.add("active");
+                
+                // Set status kembali ke mode menu terbuka biasa
+                currentScreen = "home"; 
+                return;
+            }
+
+            // JIKA USER SEDANG DI HALAMAN DEPAN BIASA
             overlay.classList.toggle("active");
             toggle.classList.toggle("active");
             
@@ -91,52 +108,56 @@
             }
         }
 
-        // FUNGSI UNTUK MEMBUKA HALAMAN BIOGRAFI
+        // FUNGSI KHUSUS UNTUK MEMBUKA HALAMAN BIOGRAFI
         function openBiography(e) {
             e.preventDefault();
             var overlay = document.getElementById("navOverlay");
             var toggle = document.getElementById("menuToggle");
-            var mainNavbar = document.getElementById("mainNavbar");
             var hero = document.getElementById("heroContainer");
             var footer = document.getElementById("streamingFooter");
             var bioSection = document.getElementById("biographySection");
 
-            // Tutup overlay menu menu utama
-            overlay.classList.remove("active");
-            toggle.classList.remove("active");
-
-            // Sembunyikan total layout utama asli bawaanmu agar tidak bentrok visual
-            mainNavbar.style.display = "none";
+            // 1. Matikan tampilan layout depan asli secara total agar tidak bocor ke latar belakang
             hero.style.display = "none";
             footer.style.display = "none";
 
-            // Aktifkan halaman bio kosong dari atas
+            // 2. Tutup overlay menu utama
+            overlay.classList.remove("active");
+            
+            // 3. Tombol garis 3 dibiarkan TETAP AKTIF berwujud "X" silang konstan
+            toggle.classList.add("active");
+
+            // 4. Munculkan halaman seksi biografi kosong
             bioSection.classList.add("active");
             window.scrollTo(0, 0);
+
+            // Kunci status posisi layar ke mode biography
+            currentScreen = "biography";
         }
 
-        // FUNGSI UNTUK MENUTUP HALAMAN BIOGRAFI (BALIK KE OVERLAY MENU)
+        // FUNGSI RE-SET KETIKA TOMBOL "X" DI BIO DIKLIK UNTUK BALIK KE MENU OVERLAY
         function closeBiography() {
             var overlay = document.getElementById("navOverlay");
             var toggle = document.getElementById("menuToggle");
-            var mainNavbar = document.getElementById("mainNavbar");
             var hero = document.getElementById("heroContainer");
             var footer = document.getElementById("streamingFooter");
             var bioSection = document.getElementById("biographySection");
 
-            // Sembunyikan halaman bio
+            // Sembunyikan halaman biography
             bioSection.classList.remove("active");
 
-            // Kembalikan display asli layout utama bawaanmu ke posisi semula
-            mainNavbar.style.display = "flex";
+            // Kembalikan display asli halaman utama tapi dengan status disembunyikan (opacity 0)
             hero.style.display = "flex";
             footer.style.display = "flex";
-            hero.style.opacity = "1";
-            footer.style.opacity = "1";
+            hero.style.opacity = "0";
+            footer.style.opacity = "0";
 
-            // Buka kembali menu overlay otomatis sesuai alur sketsamu
+            // Munculkan kembali Menu Overlay secara murni tanpa gangguan visual bertumpuk
             overlay.classList.add("active");
             toggle.classList.add("active");
+
+            // Reset status posisi kembali normal
+            currentScreen = "home";
         }
     </script>
 
