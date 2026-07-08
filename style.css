@@ -8,7 +8,7 @@
 body, html {
     height: 100%;
     font-family: 'Courier New', Courier, monospace;
-    overflow: hidden; /* Tetap mengunci layar utama agar tidak bocor */
+    overflow: hidden;
     background-color: #050505;
 }
 
@@ -61,7 +61,7 @@ body {
     transform: translateY(-9px) rotate(-45deg);
 }
 
-/* HALAMAN MENU (OVERLAY FULLSCREEN) */
+/* HALAMAN MENU (DIUBAH MENJADI SEMI-TRANSPARAN AGAR BACKGROUND TETAP TERLIHAT) */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -121,20 +121,6 @@ body {
     filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.1));
 }
 
-/* WRAPPER KONTEN DEPAN UTAMA */
-#homeWrapper {
-    display: none; /* Disembunyikan secara default jika tidak aktif */
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-}
-
-#homeWrapper.active {
-    display: flex; /* Hanya muncul ketika kelas active dipasang */
-}
-
 /* KONTEN HALAMAN UTAMA */
 .hero-container {
     flex: 1;
@@ -180,44 +166,41 @@ body {
 .icon-links a[title="Amazon Music"]:hover { color: #25D3DA; }
 
 
-/* ========================================== */
-/* LAYOUT KHUSUS HALAMAN BIOGRAFI / CATHARSIS */
-/* ========================================== */
+/* ============================================================ */
+/* MURNI HANYA MENAMBAHKAN STYLE SEKSI LAYOUT BIOGRAPHY DI BAWAH */
+/* ============================================================ */
 .bio-page-container {
-    display: none; /* Tersembunyi murni di awal agar tidak tabrakan */
+    display: none; /* Tersembunyi sempurna di awal agar halaman depan aman */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Menggunakan tingkat opacity background 30% yang sama persis seperti menu */
+    /* Opacity latar belakang dibuat sama persis 30% dengan menu overlay */
     background-color: rgba(5, 5, 5, 0.30);
     z-index: 95;
     overflow-x: hidden;
-    overflow-y: auto; /* Izinkan scroll ke bawah secara independen jika teks memanjang */
+    overflow-y: auto; /* Memungkinkan gulir halus ke bawah jika teks panjang */
     padding: 80px 24px 60px 24px;
     justify-content: center;
-    opacity: 0;
-    transition: opacity 0.15s linear;
 }
 
 .bio-page-container.active {
-    display: flex; /* Muncul penuh saat menu biography diklik */
+    display: flex; /* Muncul hanya saat menu diklik */
 }
 
 .bio-content-wrapper {
     width: 100%;
-    max-width: 500px; /* Lebar maksimal area content disesuaikan layar HP */
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-/* KOTAK FOTO PROFIL ATAS */
 .bio-photo-box {
     width: 100%;
     aspect-ratio: 1 / 1;
-    background-color: #ffffff; /* Kotak placeholder putih */
+    background-color: #ffffff;
     margin-bottom: 25px;
     display: flex;
     justify-content: center;
@@ -231,9 +214,8 @@ body {
     object-fit: cover;
 }
 
-/* NAMA SENIMAN (FONT & WARNA IKUT ATURAN MENU) */
 .bio-artist-name {
-    color: #BEBEBE;
+    color: #BEBEBE; /* Warna disamakan dengan teks menu */
     font-size: 1.8rem;
     font-weight: bold;
     letter-spacing: 4px;
@@ -241,9 +223,8 @@ body {
     text-transform: uppercase;
 }
 
-/* NARASI TEKS (FONT, WARNA, & TINGKAT KEJELASAN SAMA DENGAN MENU) */
 .bio-narrative {
-    color: #BEBEBE;
+    color: #BEBEBE; /* Font & kejelasan disamakan dengan teks menu */
     font-size: 1rem;
     line-height: 1.6;
     text-align: left;
@@ -251,11 +232,6 @@ body {
     width: 100%;
 }
 
-.bio-narrative p {
-    margin-bottom: 15px;
-}
-
-/* BLOK SEKSI LINK INSTAGRAM */
 .bio-instagram-links {
     width: 100%;
     display: flex;
@@ -267,7 +243,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: #BEBEBE; /* Warna teks & ikon disamakan */
+    color: #BEBEBE; /* Warna abu-abu serasi dengan ikon streaming platform */
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: bold;
@@ -276,14 +252,13 @@ body {
 }
 
 .insta-btn-item i {
-    font-size: 1.4rem; /* Ukuran ikon disesuaikan biar seimbang */
+    font-size: 1.4rem;
 }
 
 .insta-btn-item:hover {
-    color: #262626; /* Efek hover gelap yang serasi dengan tautan menu */
+    color: #262626; /* Efek hover gelap khas menu utamamu */
 }
 
-/* TOMBOL CLOSE X (FIXED DI POJOK KANAN ATAS) */
 .bio-close-btn {
     position: fixed;
     top: 20px;
@@ -299,14 +274,13 @@ body {
     color: #262626;
 }
 
-
-/* RESPONSIVE LAYOUT */
+/* RESPONSIVE ATURAN DESIGN */
 @media (min-width: 768px) {
     .band-logo { max-width: 450px; }
     .nav-links a { font-size: 2.5rem; }
     .menu-sub-logo img { max-width: 130px; }
     
-    /* Penyesuaian skala biografi di layar PC desktop */
+    /* Penyesuaian skala konten bio di desktop */
     .bio-content-wrapper { max-width: 550px; }
     .bio-artist-name { font-size: 2.5rem; }
 }
